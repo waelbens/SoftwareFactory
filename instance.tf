@@ -1,6 +1,9 @@
 resource "aws_instance" "main" {
   ami           = "${lookup(var.AMIS, var.AWS_REGION)}"
   instance_type = "m5.large"
+  tags {
+      Name = "SoftwareFactory"
+  }
 
   # the VPC subnet
   subnet_id = "${aws_subnet.main-public-1.id}"
@@ -12,16 +15,16 @@ resource "aws_instance" "main" {
   key_name = "${aws_key_pair.mykeypair.key_name}"
 
 
- # provisioner "file" {
-  #  source = "script.sh"
-  #  destination = "/tmp/script.sh"
-  #}
-  #provisioner "remote-exec" {
-   # inline = [
-    #  "chmod +x /tmp/script.sh",
-    #  "sudo /tmp/script.sh"
-    #]
-  #} 
+  provisioner "file" {
+    source = "requirements.sh"
+    destination = "/tmp/requirements.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/requirements.sh",
+      "sudo /tmp/requirements.sh"
+    ]
+  } 
   provisioner "local-exec" {
      command = "echo ${aws_instance.main.private_ip} >> private_ips.txt"
   }
