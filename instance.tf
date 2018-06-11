@@ -15,13 +15,13 @@ resource "aws_instance" "main" {
  # provisioner "file" {
   #  source = "script.sh"
   #  destination = "/tmp/script.sh"
-  }
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/script.sh",
-      "sudo /tmp/script.sh"
-    ]
-  } 
+  #}
+  #provisioner "remote-exec" {
+   # inline = [
+    #  "chmod +x /tmp/script.sh",
+    #  "sudo /tmp/script.sh"
+    #]
+  #} 
   provisioner "local-exec" {
      command = "echo ${aws_instance.main.private_ip} >> private_ips.txt"
   }
