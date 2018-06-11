@@ -12,9 +12,9 @@ resource "aws_instance" "main" {
   key_name = "${aws_key_pair.mykeypair.key_name}"
 
 
-  provisioner "file" {
-    source = "script.sh"
-    destination = "/tmp/script.sh"
+ # provisioner "file" {
+  #  source = "script.sh"
+  #  destination = "/tmp/script.sh"
   }
   provisioner "remote-exec" {
     inline = [
