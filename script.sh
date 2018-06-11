@@ -23,6 +23,16 @@ sudo chown root /etc/environment
 #install unzip
 sudo apt-get install unzip
 
+# install Git
+cd /opt
+sudo apt-get update -y
+sudo apt-get install -y git
+
+# install Nginx
+cd /opt
+sudo apt-get update -y
+sudo apt-get install -y nginx
+
 # install jenkins
 apt-get update -y
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
@@ -32,11 +42,6 @@ sudo apt-get install -y jenkins
 # make sure jenkins is started
 cd /etc/init.d
 sudo ./jenkins start
-
-# install Git
-cd /opt
-sudo apt-get -y update
-sudo apt-get -y install git
 
 # install SonarQube
 cd /opt
