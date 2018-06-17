@@ -29,3 +29,17 @@ sudo echo JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre" >> /etc/environment
 source /etc/environment
 sudo chown root /etc/environment
 
+# install awscli
+sudo curl -O https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py --user
+sudo export PATH=~/.local/bin:$PATH
+sudo source ~/.profile
+sudo pip install -y awscli --upgrade --user
+sudo apt install -y awscli
+
+#install npm
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install -y build-essential
+npm install -g @angular/cli@latest
+
